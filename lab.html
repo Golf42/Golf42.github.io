@@ -3,97 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เกม XO</title>
+    <title>ตารางข้อมูล</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f7f7f7;
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
         }
-        .board {
-            display: grid;
-            grid-template-columns: repeat(3, 100px);
-            grid-template-rows: repeat(3, 100px);
-            gap: 5px;
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #333;
         }
-        .cell {
-            width: 100px;
-            height: 100px;
-            background-color: #ffffff;
-            border: 2px solid #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            cursor: pointer;
+        th {
+            background-color: #4CAF50;
+            color: white;
         }
-        .winner {
-            margin-top: 20px;
-            font-size: 24px;
-            color: green;
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
 <body>
-    <div>
-        <div class="board" id="board">
-            <div class="cell" data-index="0"></div>
-            <div class="cell" data-index="1"></div>
-            <div class="cell" data-index="2"></div>
-            <div class="cell" data-index="3"></div>
-            <div class="cell" data-index="4"></div>
-            <div class="cell" data-index="5"></div>
-            <div class="cell" data-index="6"></div>
-            <div class="cell" data-index="7"></div>
-            <div class="cell" data-index="8"></div>
-        </div>
-        <div class="winner" id="winner"></div>
-    </div>
-
-    <script>
-        const board = document.getElementById('board');
-        const winnerDisplay = document.getElementById('winner');
-        let currentPlayer = 'X';
-        let gameState = ["", "", "", "", "", "", "", "", ""];
-        const winningConditions = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
-        ];
-
-        board.addEventListener('click', function(e) {
-            const index = e.target.getAttribute('data-index');
-
-            if (gameState[index] === "" && winnerDisplay.innerText === "") {
-                gameState[index] = currentPlayer;
-                e.target.innerText = currentPlayer;
-
-                if (checkWinner()) {
-                    winnerDisplay.innerText = `ผู้ชนะคือ ${currentPlayer}!`;
-                } else {
-                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-                }
-            }
-        });
-
-        function checkWinner() {
-            for (let i = 0; i < winningConditions.length; i++) {
-                const [a, b, c] = winningConditions[i];
-                if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
-                    return true;
-                }
-            }
-            return false;
-        }
-    </script>
+    <h2 style="text-align: center;">ตัวอย่างตารางข้อมูล</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ลำดับ</th>
+                <th>ชื่อ</th>
+                <th>อายุ</th>
+                <th>จังหวัด</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>สมชาย</td>
+                <td>25</td>
+                <td>กรุงเทพมหานคร</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>สมหญิง</td>
+                <td>30</td>
+                <td>เชียงใหม่</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>ปวีณา</td>
+                <td>28</td>
+                <td>ขอนแก่น</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>อนันต์</td>
+                <td>22</td>
+                <td>ภูเก็ต</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
+
