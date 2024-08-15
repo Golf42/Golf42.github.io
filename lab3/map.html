@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Web Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            width: 100%;
+
+            height: 600px;
+        }
+
+        .leaflet-control-locate.following a .leaflet-control-locate-location-arrow {
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="rgb(252, 132, 40)" d="M445 4 29 195c-48 23-32 93 19 93h176v176c0 51 70 67 93 19L508 67c16-38-25-79-63-63z"/></svg>');
+        }
+
+        .leaflet-control-locate.active a .leaflet-control-locate-location-arrow {
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="rgb(32, 116, 182)" d="M445 4 29 195c-48 23-32 93 19 93h176v176c0 51 70 67 93 19L508 67c16-38-25-79-63-63z"/></svg>');
+        }
+
+        .leaflet-control-locate a .leaflet-control-locate-location-arrow {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin: 7px;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="black" d="M445 4 29 195c-48 23-32 93 19 93h176v176c0 51 70 67 93 19L508 67c16-38-25-79-63-63z"/></svg>');
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
+
+    <script type="text/javascript" src="Leaflet.Coordinates-0.1.5.min.js"></script>
+    <link rel="stylesheet" href="Leaflet.Coordinates-0.1.5.css" />
+
+    <script>
+        $(document).ready(function () {
+            // สร้างแผนที่และตั้งค่าเริ่มต้น
+            var map = L.map('map').setView([15.0000, 100.0000], 13);
+
+            // เพิ่มแผนที่พื้นฐาน (tile layer)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // เพิ่มปุ่มแสดงตำแหน่งปัจจุบัน
+
+
+            L.control.locate({
+                position: 'bottomleft',
+                strings: {
+                    title: "แสดงตำแหน่งปัจจุบันของคุณ"
+                }
+            }).addTo(map);
+
+            var marker = L.marker([15.66839942655514, 100.1370606227435]).addTo(map);
+
+            //add standard controls
+            L.control.coordinates().addTo(map);
+            //add configured controls
+            L.control.coordinates({
+                position: "bottomleft",
+                decimals: 2,
+                decimalSeperator: ",",
+                labelTemplateLat: "Latitude: {y}",
+                labelTemplateLng: "Longitude: {x}"
+            }).addTo(map);
+            L.control.coordinates({
+                position: "topright",
+                useDMS: true,
+                labelTemplateLat: "N {y}",
+                labelTemplateLng: "E {x}",
+                useLatLngOrder: true
+            }).addTo(map);
+
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>
