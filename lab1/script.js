@@ -16,7 +16,7 @@ loginForm.addEventListener("submit", function(event) {
 
     // เปรียบเทียบค่าที่กรอกกับค่าที่เก็บไว้
     if (username === validUsername && password === validPassword) {
-        alert("Login successful!");
+        alert("เข้าสู่ระบบสำเร็จ!");
         // สามารถทำการ redirect ไปยังหน้าอื่นได้ เช่น
         // window.location.href = "dashboard.html";
     } else {
