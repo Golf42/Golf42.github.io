@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaflet Web Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
     <style>
         #map {
             width: 100%;
@@ -33,7 +34,8 @@
 <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
-
+   <script type="text/javascript" src="Leaflet.Coordinates-0.1.5.min.js"></script>
+    <link rel="stylesheet" href="Leaflet.Coordinates-0.1.5.css"/>
 <script>
     $(document).ready(function () {
         // สร้างแผนที่และตั้งค่าเริ่มต้น
@@ -55,6 +57,23 @@
         }).addTo(map);
         var marker = L.marker([15.66839942655514, 100.1370606227435]).addTo(map);
     });
+             //add standard controls
+  L.control.coordinates().addTo(map);
+  //add configured controls
+  L.control.coordinates({
+   position:"bottomleft",
+   decimals:2,
+   decimalSeperator:",",
+   labelTemplateLat:"Latitude: {y}",
+   labelTemplateLng:"Longitude: {x}"
+  }).addTo(map);
+  L.control.coordinates({
+   position:"topright",
+   useDMS:true,
+   labelTemplateLat:"N {y}",
+   labelTemplateLng:"E {x}",
+   useLatLngOrder:true
+  }).addTo(map);
 </script>
 
 </body>
