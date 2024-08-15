@@ -20,6 +20,6 @@ loginForm.addEventListener("submit", function(event) {
         // สามารถทำการ redirect ไปยังหน้าอื่นได้ เช่น
         // window.location.href = "dashboard.html";
     } else {
-        errorMessage.textContent = "Invalid username or password!";
+        errorMessage.textContent = "ข้อมูลถูกต้อง";
     }
 });
